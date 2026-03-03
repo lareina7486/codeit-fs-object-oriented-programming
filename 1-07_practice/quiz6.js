@@ -1,7 +1,13 @@
 // 1-07. 퀴즈 6 - RPG 전투 시스템
 
 class Warrior {
-  constructor({ name, maxHp, mp, attackPower, potionCount }) {
+  constructor({
+    name,
+    maxHp,
+    mp,
+    attackPower,
+    potionCount,
+  }) {
     // TODO
   }
 
@@ -26,12 +32,18 @@ class Warrior {
   }
 
   getStatus() {
-    // TODO: "이름 | HP:현재/최대 MP:현재 POT:개수" 형식
+    // TODO: "이름 | HP:현재/최대 MP:현재 Potion:개수" 형식
   }
 }
 
 class Mage {
-  constructor({ name, maxHp, mp, attackPower, potionCount }) {
+  constructor({
+    name,
+    maxHp,
+    mp,
+    attackPower,
+    potionCount,
+  }) {
     // TODO
   }
 
@@ -56,7 +68,7 @@ class Mage {
   }
 
   getStatus() {
-    // TODO: "이름 | HP:현재/최대 MP:현재 POT:개수" 형식
+    // TODO: "이름 | HP:현재/최대 MP:현재 Potion:개수" 형식
   }
 }
 
@@ -75,10 +87,10 @@ const mage = new Mage({
   potionCount: 0,
 });
 
-warrior.attack(mage);       // 마법사 HP: 72
+warrior.attack(mage); // 마법사 HP: 72
 mage.castFireball(warrior); // 전사 HP: 100, 마법사 MP: 40
-warrior.powerStrike(mage);  // 마법사 HP: 36, 전사 MP: 20
-warrior.usePotion();        // 전사 HP: 130, 전사 POT: 0
+warrior.powerStrike(mage); // 마법사 HP: 36, 전사 MP: 20
+warrior.usePotion(); // 전사 HP: 130, 전사 Potion: 0
 
-console.log(warrior.getStatus()); // "전사 | HP:130/140 MP:20 POT:0"
-console.log(mage.getStatus());    // "마법사 | HP:36/90 MP:40 POT:0"
+console.log(warrior.getStatus()); // "전사 | HP:130/140 MP:20 Potion:0"
+console.log(mage.getStatus()); // "마법사 | HP:36/90 MP:40 Potion:0"
