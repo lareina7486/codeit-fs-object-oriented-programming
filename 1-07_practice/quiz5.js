@@ -2,15 +2,16 @@
 
 class Member {
   constructor(name, level) {
-    // TODO
+    this.name = name;
+    this.level = level;
   }
 
   levelUp() {
-    // TODO
+    this.level += 1;
   }
 
   getInfo() {
-    // TODO
+    return (`${this.name} - Lv.${this.level}`);
   }
 }
 

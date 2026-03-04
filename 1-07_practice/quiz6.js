@@ -1,86 +1,123 @@
 // 1-07. 퀴즈 6 - RPG 전투 시스템
 
 class Warrior {
-  constructor({
-    name,
-    maxHp,
-    mp,
-    attackPower,
-    potionCount,
-  }) {
-    // TODO
+  constructor({ name, maxHp, mp, attackPower, potionCount }) {
+    this.name = name;
+    this.maxHp = maxHp;
+    this.hp = maxHp;
+    this.mp = mp;
+    this.attackPower = attackPower;
+    this.potionCount = potionCount;
   }
 
+  // TODO: hp를 amount만큼 감소 (최소 0)
   takeDamage(amount) {
-    // TODO: hp를 amount만큼 감소 (최소 0)
+    // this.hp -= amount;
+    // if (this.hp < 0) {
+    //   this.hp = 0;
+    // }
+    this.hp = Math.max(this.hp - amount, 0);
   }
 
   attack(target) {
-    // TODO: target에게 기본 공격
+    target.takeDamage(this.attackPower);
   }
 
   powerStrike(target) {
-    // TODO:
-    // mp가 10 미만이면 false 반환
-    // 아니면 mp를 10 차감하고 기본 공격력의 2배 피해, true 반환
+    if (this.mp < 10) {
+      return false;
+    }
+    this.mp -= 10;
+    target.takeDamage(this.attackPower * 2);
+    return true;
   }
 
+  // TODO:
   usePotion() {
-    // TODO:
-    // potionCount가 0이면 false 반환
-    // 아니면 hp를 30 회복 (maxHp 초과 금지), potionCount 1 감소, true 반환
+    if (this.potionCount === 0) {
+      return false;
+    } else {
+      this.hp += 30;
+      if (this.hp > this.maxHp) {
+        this.hp = this.maxHp;
+      }
+      this.potionCount -= 1;
+      return true;
+    }
   }
 
   getStatus() {
+    return `${this.name} | HP:${this.hp}/${this.maxHp} MP:${this.mp} Potion:${this.potionCount}`;
     // TODO: "이름 | HP:현재/최대 MP:현재 Potion:개수" 형식
   }
 }
 
 class Mage {
-  constructor({
-    name,
-    maxHp,
-    mp,
-    attackPower,
-    potionCount,
-  }) {
-    // TODO
+  constructor({ name, maxHp, mp, attackPower, potionCount }) {
+    this.name = name;
+    this.maxHp = maxHp;
+    this.hp = maxHp;
+    this.mp = mp;
+    this.attackPower = attackPower;
+    this.potionCount = potionCount;
   }
 
   takeDamage(amount) {
-    // TODO: hp를 amount만큼 감소 (최소 0)
+    this.hp -= amount;
+    if (this.hp < 0) {
+      this.hp = 0;
+    }
   }
 
   attack(target) {
     // TODO: target에게 기본 공격
+    target.takeDamage(this.attackPower);
   }
 
   usePotion() {
+    if (this.potionCount === 0) {
+      return false;
+    } else {
+      this.hp += 30;
+      if (this.hp > this.maxHp) {
+        this.hp = this.maxHp;
+      }
+      this.potionCount -= 1;
+      return true;
+    }
     // TODO:
     // potionCount가 0이면 false 반환
     // 아니면 hp를 30 회복 (maxHp 초과 금지), potionCount 1 감소, true 반환
   }
 
   castFireball(target) {
+    if (target.mp < 20) {
+      return false;
+    } else {
+      this.mp -= 20;
+      target.takeDamage(40);
+      return true;
+    }
     // TODO:
     // mp가 20 미만이면 false 반환
     // 아니면 mp를 20 차감하고 target에게 40 피해, true 반환
   }
 
   getStatus() {
+    return `${this.name} | HP:${this.hp}/${this.maxHp} MP:${this.mp} Potion:${this.potionCount}`;
     // TODO: "이름 | HP:현재/최대 MP:현재 Potion:개수" 형식
   }
 }
 
 const warrior = new Warrior({
-  name: "전사",
+  name: '전사',
   maxHp: 140,
   mp: 30,
   attackPower: 18,
   potionCount: 1,
 });
 const mage = new Mage({
-  name: "마법사",
+  name: '마법사',
   maxHp: 90,
   mp: 60,
   attackPower: 8,

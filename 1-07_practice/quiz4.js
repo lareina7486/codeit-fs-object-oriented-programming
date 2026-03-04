@@ -2,11 +2,12 @@
 
 class Product {
   constructor(name, price) {
-    // TODO
+    this.name = name;
+    this.price = price;
   }
 
   getPriceLabel(discountRate = 0) {
-    // TODO
+    return (discountRate ? `${this.price * (1-discountRate)}원` : `${this.price}원`);
   }
 }
 
